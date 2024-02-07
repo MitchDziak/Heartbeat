@@ -1,0 +1,46 @@
+[gd_scene load_steps=7 format=3 uid="uid://b4dlkqa0mxsf7"]
+
+[ext_resource type="PackedScene" uid="uid://jih0n02pklq4" path="res://player.tscn" id="1_8y02f"]
+[ext_resource type="PackedScene" uid="uid://ciwnx52to54db" path="res://tendrils.tscn" id="3_1otco"]
+[ext_resource type="PackedScene" uid="uid://b4kt3mner0g34" path="res://heart.tscn" id="3_gl6m7"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_tv8ek"]
+size = Vector3(100, 2, 100)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nyctx"]
+albedo_color = Color(0.372549, 0.32549, 0.254902, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_2dkbh"]
+material = SubResource("StandardMaterial3D_nyctx")
+size = Vector3(100, 2, 100)
+
+[node name="Main" type="Node"]
+
+[node name="Ground" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ground"]
+shape = SubResource("BoxShape3D_tv8ek")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Ground"]
+mesh = SubResource("BoxMesh_2dkbh")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.987505, -0.0625383, -0.144649, 0.157589, 0.391885, 0.906417, 0, -0.917886, 0.396844, 0, 12.6018, 0)
+light_color = Color(1, 1, 0.996078, 1)
+light_energy = 0.391
+shadow_enabled = true
+
+[node name="Player" parent="." instance=ExtResource("1_8y02f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.222932, 0)
+
+[node name="CameraPivot" type="Marker3D" parent="."]
+
+[node name="Camera3D" type="Camera3D" parent="CameraPivot"]
+transform = Transform3D(1, 0, 0, 0, 0.980625, 0.195895, 0, -0.195895, 0.980625, 0, 2.40291, 2.35855)
+
+[node name="Heart" parent="." instance=ExtResource("3_gl6m7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.48246, 1.02236)
+
+[node name="Tendrils" parent="." instance=ExtResource("3_1otco")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0216665, 2.44305, 0.543632)

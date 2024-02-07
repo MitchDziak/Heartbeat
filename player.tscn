@@ -1,0 +1,40 @@
+[gd_scene load_steps=6 format=3 uid="uid://jih0n02pklq4"]
+
+[ext_resource type="Script" path="res://player.gd" id="1_jjsxr"]
+[ext_resource type="Texture2D" uid="uid://d3nw3wku3lb3h" path="res://mageguy.png" id="2_b2elb"]
+[ext_resource type="Texture2D" uid="uid://d17k7a6ahhw53" path="res://rangeguy.png" id="3_pgr2n"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_o04dy"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_sjjjm"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_b2elb")
+}],
+"loop": true,
+"name": &"mage",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_pgr2n")
+}],
+"loop": true,
+"name": &"range",
+"speed": 5.0
+}]
+
+[node name="Player" type="CharacterBody3D"]
+script = ExtResource("1_jjsxr")
+
+[node name="CollisionShape" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.538074, 0)
+shape = SubResource("BoxShape3D_o04dy")
+
+[node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.643031, 0)
+billboard = 1
+texture_filter = 0
+sprite_frames = SubResource("SpriteFrames_sjjjm")
+animation = &"range"

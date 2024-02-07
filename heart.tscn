@@ -1,0 +1,39 @@
+[gd_scene load_steps=5 format=3 uid="uid://b4kt3mner0g34"]
+
+[ext_resource type="Script" path="res://heart.gd" id="1_2d00h"]
+[ext_resource type="Texture2D" uid="uid://b1b7mqa3wuxb5" path="res://heart.png" id="1_bw5k0"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_kubfe"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_bw5k0")
+}],
+"loop": true,
+"name": &"heart",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": null
+}],
+"loop": true,
+"name": &"invisibleheart",
+"speed": 5.0
+}]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_qk43o"]
+
+[node name="CharacterBody3D" type="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.74444, 0)
+script = ExtResource("1_2d00h")
+
+[node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.3)
+billboard = 1
+texture_filter = 0
+sprite_frames = SubResource("SpriteFrames_kubfe")
+animation = &"invisibleheart"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_qk43o")

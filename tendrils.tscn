@@ -1,0 +1,38 @@
+[gd_scene load_steps=5 format=3 uid="uid://ciwnx52to54db"]
+
+[ext_resource type="Script" path="res://tendrils.gd" id="1_m1uoj"]
+[ext_resource type="Texture2D" uid="uid://6ei0g6ghqp6x" path="res://tendrils.png" id="3_kosvp"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_hlosu"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": null
+}],
+"loop": true,
+"name": &"invisibletendrils",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_kosvp")
+}],
+"loop": true,
+"name": &"tendrils",
+"speed": 5.0
+}]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_57ry8"]
+
+[node name="CharacterBody3D" type="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.31832, -0.77047)
+script = ExtResource("1_m1uoj")
+
+[node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="."]
+billboard = 1
+texture_filter = 0
+sprite_frames = SubResource("SpriteFrames_hlosu")
+animation = &"invisibletendrils"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_57ry8")
